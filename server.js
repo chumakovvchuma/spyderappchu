@@ -5,6 +5,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 let cors = require('cors');
+let dbConfig = require('./database/db');
+
 
 // importing files
 const studentRoute = require('./routes/student.route');
@@ -17,7 +19,7 @@ const PORT = process.env.PORT || 8080; // Step 1
 
 // Step 2
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(dbConfig.db, {
   useNewUrlParser: true
 }).then(() => {
   console.log('Database sucessfully connected!')
