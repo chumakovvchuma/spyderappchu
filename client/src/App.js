@@ -22,6 +22,7 @@ class App extends Component {
   };
 
 
+  
   addUser = ({ name, position, company }) => {
     this.setState({
       users: [...this.state.users, { name, position, company }]
