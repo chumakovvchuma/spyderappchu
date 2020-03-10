@@ -43,7 +43,7 @@ export default class CreateStudent extends Component {
       rollno: this.state.rollno
     };
 
-    axios.post('http://localhost:8080/students/create-student', studentObject)
+    axios.post(`${process.env.PORT}/students/create-student`, studentObject)
       .then(res => console.log(res.data));
 
     this.setState({

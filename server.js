@@ -25,7 +25,7 @@ mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/my_database', 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use('/', routes);
+app.use('/create-student', routes);
 
 // Step 3
 if (process.env.NODE_ENV === 'production') {
