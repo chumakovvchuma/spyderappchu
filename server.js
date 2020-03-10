@@ -7,7 +7,7 @@ const path = require('path');
 let cors = require('cors');
 
 // importing files
-const routes = require('./routes/student.route');
+const studentRoute = require('./routes/student.route');
 
 // Define Global Variables
 const app = express();
@@ -17,15 +17,21 @@ const PORT = process.env.PORT || 8080; // Step 1
 
 // Step 2
 mongoose.Promise = global.Promise;
-mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/my_database', {
-    useNewUrlParser: true
-});
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true
+}).then(() => {
+  console.log('Database sucessfully connected!')
+},
+  error => {
+    console.log('Could not connect to database : ' + error)
+  }
+)
 
 // Configuration
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use('process.env.PORT/create-student', routes);
+app.use('/students', studentRoute);
 
 // Step 3
 if (process.env.NODE_ENV === 'production') {
@@ -37,5 +43,5 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.listen(PORT, () => {
-    log(`Server is starting at PORT: ${process.env.PORT} ${PORT}`);
+    log(`Server is starting at PORT: ${process.env} ${PORT}`);
 });
