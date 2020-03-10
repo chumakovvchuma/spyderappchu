@@ -43,15 +43,25 @@ export default class CreateStudent extends Component {
       rollno: this.state.rollno
     };
 
-    axios.post(`/students/create-student`, studentObject)
-      .then(res => console.log(res.data));
+      const response = fetch('/students/create-student', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(studentObject)
+      });
+      
+      let result = response;
+      alert(result);
 
-    this.setState({
-      name: '',
-      email: '',
-      rollno: ''
-    });
-  }
+
+        this.setState({
+          name: '',
+          email: '',
+          rollno: ''
+        });
+      }
+  
 
   render() {
     return (<div className="form-wrapper">
