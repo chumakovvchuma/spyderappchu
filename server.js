@@ -4,9 +4,10 @@ const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+let cors = require('cors');
 
 // importing files
-const routes = require('./routes');
+const routes = require('./routes/student.route');
 
 // Define Global Variables
 const app = express();
@@ -15,13 +16,15 @@ const PORT = process.env.PORT || 8080; // Step 1
 
 
 // Step 2
+mongoose.Promise = global.Promise;
 mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/my_database', {
     useNewUrlParser: true
 });
 
 // Configuration
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 app.use('/', routes);
 
 // Step 3
