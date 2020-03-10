@@ -10,6 +10,7 @@ let dbConfig = require('./database/db');
 
 // importing files
 const studentRoute = require('./routes/student.route');
+const issueRoute = require('./routes/issue.route');
 
 // Define Global Variables
 const app = express();
@@ -34,6 +35,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(`/students`, studentRoute);
+app.use(`/issues`, issueRoute);
 
 // Step 3
 if (process.env.NODE_ENV === 'production') {
