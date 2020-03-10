@@ -6,7 +6,7 @@ let mongoose = require('mongoose'),
 let studentSchema = require('../models/Student');
 
 // CREATE Student
-router.route(`${process.env.NODE_ENV}/create-student`).post((req, res, next) => {
+router.route(`/create-student`).post((req, res, next) => {
   studentSchema.create(req.body, (error, data) => {
     if (error) {
       return next(error)
@@ -18,7 +18,7 @@ router.route(`${process.env.NODE_ENV}/create-student`).post((req, res, next) => 
 });
 
 // READ Students
-router.route(`${process.env.NODE_ENV}/`).get((req, res) => {
+router.route(`/`).get((req, res) => {
   studentSchema.find((error, data) => {
     if (error) {
       return next(error)
@@ -29,7 +29,7 @@ router.route(`${process.env.NODE_ENV}/`).get((req, res) => {
 })
 
 // Get Single Student
-router.route(`${process.env.NODE_ENV}/edit-student/:id`).get((req, res) => {
+router.route(`/edit-student/:id`).get((req, res) => {
   studentSchema.findById(req.params.id, (error, data) => {
     if (error) {
       return next(error)
@@ -41,7 +41,7 @@ router.route(`${process.env.NODE_ENV}/edit-student/:id`).get((req, res) => {
 
 
 // Update Student
-router.route(`${process.env.NODE_ENV}/update-student/:id`).put((req, res, next) => {
+router.route(`/update-student/:id`).put((req, res, next) => {
   studentSchema.findByIdAndUpdate(req.params.id, {
     $set: req.body
   }, (error, data) => {
@@ -56,7 +56,7 @@ router.route(`${process.env.NODE_ENV}/update-student/:id`).put((req, res, next) 
 })
 
 // Delete Student
-router.route(`${process.env.NODE_ENV}/delete-student/:id`).delete((req, res, next) => {
+router.route(`/delete-student/:id`).delete((req, res, next) => {
   studentSchema.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);

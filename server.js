@@ -31,7 +31,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use(`${process.env.NODE_ENV}/students`, studentRoute);
+app.use(`/students`, studentRoute);
 
 // Step 3
 if (process.env.NODE_ENV === 'production') {
@@ -43,5 +43,5 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.listen(PORT, () => {
-    log(`Server is starting at PORT: ${process.env} ${PORT}`);
+    log(`Server is starting at PORT: ${PORT}`);
 });
