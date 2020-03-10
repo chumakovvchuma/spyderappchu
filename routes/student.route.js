@@ -1,3 +1,4 @@
+// @ts-nocheck
 let mongoose = require('mongoose'),
   express = require('express'),
   router = express.Router();
@@ -21,6 +22,7 @@ router.route(`/create-student`).post((req, res, next) => {
 router.route(`/`).get((req, res) => {
   studentSchema.find((error, data) => {
     if (error) {
+      
       return next(error)
     } else {
       res.json(data)
@@ -32,6 +34,7 @@ router.route(`/`).get((req, res) => {
 router.route(`/edit-student/:id`).get((req, res) => {
   studentSchema.findById(req.params.id, (error, data) => {
     if (error) {
+
       return next(error)
     } else {
       res.json(data)

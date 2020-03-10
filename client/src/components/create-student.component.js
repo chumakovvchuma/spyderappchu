@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
@@ -50,9 +51,7 @@ export default class CreateStudent extends Component {
         },
         body: JSON.stringify(studentObject)
       });
-      
-      let result = response;
-      alert(result);
+
 
 
         this.setState({
