@@ -12,7 +12,7 @@ const studentRoute = require('./routes/student.route');
 // Define Global Variables
 const app = express();
 const log = console.log;
-const PORT = process.env.PORT || 8080; // Step 1
+const PORT = process.env.NODE_ENV || 8080; // Step 1
 
 
 // Step 2
@@ -31,7 +31,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use('/students', studentRoute);
+app.use(`${process.env.NODE_ENV}/students`, studentRoute);
 
 // Step 3
 if (process.env.NODE_ENV === 'production') {
