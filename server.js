@@ -25,7 +25,7 @@ mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/my_database', 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use('/create-student', routes);
+app.use('process.env.PORT/create-student', routes);
 
 // Step 3
 if (process.env.NODE_ENV === 'production') {
@@ -37,5 +37,5 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.listen(PORT, () => {
-    log(`Server is starting at PORT: ${PORT}`);
+    log(`Server is starting at PORT: ${process.env.PORT} ${PORT}`);
 });
